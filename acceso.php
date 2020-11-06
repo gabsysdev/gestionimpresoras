@@ -10,11 +10,12 @@
     $ejecutar=mysqli_query($conexion,$query);
 
     $cant = mysqli_num_rows($ejecutar);
+    
     if($cant==1){
         $reg=mysqli_fetch_array($ejecutar);
         session_start();
         $_SESSION['id']=$reg['id_usuario'];
-        echo 1, "Ingreso valido";
+        echo 1;
     }else{
         echo "Datos incorrectos";
     }
