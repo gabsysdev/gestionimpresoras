@@ -92,7 +92,7 @@
 			  success: function(e){
 				console.log(e);
 				if(e==1){
-				  window.location = "admingestion.php";
+				  window.location = "admingestionServicios.php";
 				}
 			  }
 			}) 

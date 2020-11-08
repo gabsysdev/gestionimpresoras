@@ -24,9 +24,9 @@
             <div class="col-md-3 bg-secondary text-dark">
                 <div class="list-group mt-3">
                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('abmProductos')">Equipos</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('abmCategorías')">Tóners</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('abmProveedores')">Refacciones</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('Reportes')">Reportes</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('abmCategorías')">Categorías</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('abmProveedores')">Proveedores</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('Reportes')">Alquileres</a>
                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('misDatos')">Mis datos</a>
                 </div>
             </div>
@@ -43,10 +43,10 @@
     
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="adminGestionProductos_editar.js"></script>
-    <script src="adminGestionProductos.js"></script>
-    <script src="adminGestionProductos_agregar.js"></script>
-    <script src="adminGestionProductos_eliminar.js"></script>
+    <script src="adminGestion_editar.js"></script>
+    <script src="adminGestion.js"></script>
+    <script src="adminGestion_agregar.js"></script>
+    <script src="adminGestion_eliminar.js"></script>
 </body>
 </html>
 
