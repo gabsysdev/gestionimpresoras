@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2020 a las 02:20:36
+-- Tiempo de generación: 08-11-2020 a las 05:16:08
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -21,6 +21,133 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `santisolution`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alquiler`
+--
+
+CREATE TABLE `alquiler` (
+  `id_alquiler` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `fec_alquilado` int(11) NOT NULL,
+  `fec_devolucion` int(11) NOT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `alquiler`
+--
+
+INSERT INTO `alquiler` (`id_alquiler`, `id_producto`, `fec_alquilado`, `fec_devolucion`, `estado`) VALUES
+(1, 1, 2147483647, 2147483647, 1),
+(2, 1, 2147483647, 2147483647, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id_categoria` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `eliminado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id_categoria`, `nombre`, `eliminado`) VALUES
+(1, 'Impresoras', 0),
+(3, 'Toners', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `misdatos`
+--
+
+CREATE TABLE `misdatos` (
+  `id` int(11) NOT NULL,
+  `nombreEmpresa` varchar(100) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `cuit` varchar(15) NOT NULL,
+  `rubro` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `misdatos`
+--
+
+INSERT INTO `misdatos` (`id`, `nombreEmpresa`, `direccion`, `cuit`, `rubro`) VALUES
+(1, 'Los Bolis', 'av. siempre viva 123', '20-35353535-7', 'Verduleria');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `producto`
+--
+
+CREATE TABLE `producto` (
+  `id_producto` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `serial` varchar(255) NOT NULL,
+  `precio` varchar(100) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
+  `id_proveedor` int(11) NOT NULL,
+  `eliminado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `nombre`, `serial`, `precio`, `descripcion`, `id_categoria`, `id_proveedor`, `eliminado`) VALUES
+(1, 'Impresora Xerox', '', '8000', 'Cabezal roto', 1, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedor`
+--
+
+CREATE TABLE `proveedor` (
+  `id_proveedor` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `direccion` varchar(250) NOT NULL,
+  `eliminado` int(11) NOT NULL,
+  `cuit` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id_proveedor`, `nombre`, `direccion`, `eliminado`, `cuit`) VALUES
+(1, 'Xerox', 'Direccion 123', 0, '30-55555555-7'),
+(2, 'HP', 'Direccion 123', 0, '3030303030');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `id_rol` int(11) NOT NULL,
+  `nombre` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `nombre`) VALUES
+(1, 'admin');
 
 -- --------------------------------------------------------
 
@@ -46,6 +173,18 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`) VALUES
 --
 
 --
+-- Indices de la tabla `alquiler`
+--
+ALTER TABLE `alquiler`
+  ADD PRIMARY KEY (`id_alquiler`);
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id_producto`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -54,6 +193,18 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `alquiler`
+--
+ALTER TABLE `alquiler`
+  MODIFY `id_alquiler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
