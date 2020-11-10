@@ -10,7 +10,7 @@
     <style>
         html,body{
             height:100%;
-            background-color: #f0f2f4;
+            background-color: #f8f9fa;
         }
         .menuProductos, .row{
             height:100%;

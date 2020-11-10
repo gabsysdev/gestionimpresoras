@@ -185,19 +185,19 @@ function mostrarTabla(abm){
                     let bgEstado="";
                     if(element.estado==1){
                         estado ="Libre";
-                        bgEstado='class="bg bg-success"';
+                        bgEstado='class="bg bg-success text-white text-center"';
                         contLibre += 1;
                     }else if(element.estado == 2){
                         estado ="Alquilados";
-                        bgEstado='style="background-color: rgb(238, 255, 6);"';
+                        bgEstado='class="text-center" style="background-color: rgb(238, 255, 6);"';
                         contAlquilados += 1;
                     }else if(element.estado == 3){
                         estado ="Prox. a devolver";
-                        bgEstado='style="background-color: rgb(255, 168, 6);"';
+                        bgEstado='class="text-center" style="background-color: rgb(255, 168, 6);"';
                         contProxADev += 1;
                     }else{
                         estado ="Sin devolver";
-                        bgEstado='class="bg bg-danger text-white"';
+                        bgEstado='class="bg bg-danger text-white text-center"';
                         contSinDevolver += 1;
                     }
                     document.getElementById('contLibre').innerHTML= contLibre;

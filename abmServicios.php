@@ -5,7 +5,7 @@
 
 </div>
 
-<div id="estadoReferencia">
+<div id="estadoReferencia" class="mt-lg-3 mb-lg-2">
   <!-- estados -->
 </div>
 <table class="table table-striped ">
