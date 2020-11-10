@@ -90,10 +90,10 @@ function mostrarTabla(abm){
         console.log("mostrar tabla alquiler");
         document.getElementById('tituloDelAbm').innerHTML="Alquileres";
         document.getElementById('estadoReferencia').innerHTML=`
-        Libres <span class="badge badge-success">0</span>
-        Alquilados <span class="badge" style="background-color: rgb(238, 255, 6);">0</span>
-        Prox. a devolver <span class="badge" style="background-color: rgb(255, 168, 6);">0</span>
-        Sin devolver <span class="badge badge-danger">0</span>
+        Libres <span id="contLibre" class="badge badge-success">0</span>
+        Alquilados <span id="contAlquilados" class="badge" style="background-color: rgb(238, 255, 6);">0</span>
+        Prox. a devolver <span id="contProxADev" class="badge" style="background-color: rgb(255, 168, 6);">0</span>
+        Sin devolver <span id="contSinDevolver" class="badge badge-danger">0</span>
         `;
         document.getElementById('btnAgregar').innerHTML=`
         <button type="button" onclick="onclick_btnAgregar('alquiler')" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalAgregar">
@@ -176,18 +176,46 @@ function mostrarTabla(abm){
             });
             }
             else if(tipoDeConsulta=='alquiler'){
+                let contLibre = 0;
+                let contAlquilados = 0;
+                let contProxADev = 0;
+                let contSinDevolver = 0;
                 respuesta2.forEach(element => {
+                    let estado="";
+                    let bgEstado="";
+                    if(element.estado==1){
+                        estado ="Libre";
+                        bgEstado='class="bg bg-success"';
+                        contLibre += 1;
+                    }else if(element.estado == 2){
+                        estado ="Alquilados";
+                        bgEstado='style="background-color: rgb(238, 255, 6);"';
+                        contAlquilados += 1;
+                    }else if(element.estado == 3){
+                        estado ="Prox. a devolver";
+                        bgEstado='style="background-color: rgb(255, 168, 6);"';
+                        contProxADev += 1;
+                    }else{
+                        estado ="Sin devolver";
+                        bgEstado='class="bg bg-danger text-white"';
+                        contSinDevolver += 1;
+                    }
+                    document.getElementById('contLibre').innerHTML= contLibre;
+                    document.getElementById('contAlquilados').innerHTML=contAlquilados;
+                    document.getElementById('contProxADev').innerHTML=contProxADev;
+                    document.getElementById('contSinDevolver').innerHTML=contSinDevolver;
                 llenarTabla+=`
                 <tr>
                     <td>${element.nombre}</td>
                     <td>${element.serial}</td>
                     <td>${element.fec_alquilado}</td>
                     <td>${element.fec_devolucion}</td>
-                    <td>${element.estado}</td>
+                    <td ${bgEstado}>${estado}</td>
                     <td><button class="btn btn-secondary" >+</button></td>
                 </tr>
                 `;
                 });
+
             }else if(tipoDeConsulta=='abmProveedores'){
                 respuesta2.forEach(element => {
                 llenarTabla+=`
