@@ -211,7 +211,7 @@ function mostrarTabla(abm){
                     <td>${element.fec_alquilado}</td>
                     <td>${element.fec_devolucion}</td>
                     <td ${bgEstado}>${estado}</td>
-                    <td><button class="btn btn-secondary" >+</button></td>
+                    <td><button class="btn btn-secondary" onclick="btnVerInfo('${element.id}, ${element.id_producto}')" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalAgregar">+</button></td>
                 </tr>
                 `;
                 });
