@@ -32,9 +32,21 @@
         <a class="nav-link font-weight-bold" href="adminGestionProductos.php">Productos</a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link font-weight-bold cursorHand" onclick="mostrarTabla('misDatos')">Mis datos</a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link font-weight-bold" href="">Salir</a>
       </li>
     </ul>
   </div>
 </nav>
+
 </html>
+
+<!-- Por algún motivo "Mis productos" en el navbar no cambia el puntero a la manito cuando
+ pones el puntero encima, por ende, lo fuerzo con css mediante esta clase jeje-->
+<style>
+  .cursorHand{
+      cursor: pointer;
+  }
+</style>
