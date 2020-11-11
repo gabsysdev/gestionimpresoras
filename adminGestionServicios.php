@@ -25,7 +25,6 @@
                 <div class="list-group mt-3">
                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('alquiler')">Alquileres</a>
                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('Reportes')">Alquileres</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('misDatos')">Mis datos</a>
                 </div>
             </div>
             <div class="col-md-9">
