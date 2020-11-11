@@ -79,6 +79,7 @@ function mostrarTabla(abm){
                                                         <th>Eliminado</th>
         `;
     }else if (abm==="Reportes"){
+        misDatosInvisible();
         document.getElementById('tituloDelAbm').innerHTML="Reportes";
         document.getElementById('tableHead').innerHTML=`
                                                         <th>Nombre</th>
@@ -254,8 +255,17 @@ function llenarVistaPrevia(idALlenar,idDelContenido){
     }
 }
 
+
+function misDatosInvisible(){
+    document.getElementById('tituloMisDatos').style.visibility="hidden";
+    document.getElementById('moduloDerecho').style.visibility="hidden";
+    document.getElementById('btnAgregar').style.visibility="hidden";
+    document.getElementById('moduloDatos').style.visibility="hidden"; 
+}
 function misDatosVisible(){
-    document.getElementById('tituloMisDatos').innerHTML="Mis datos";
+    document.getElementById('estadoReferencia').innerHTML=``;
+    document.getElementById('tituloDelAbm').innerHTML="Mis datos";
+    document.getElementById('tableHead').innerHTML=``;
     document.getElementById('moduloDerecho').style.display="none"; 
     document.getElementById('moduloDerecho').style.visibility="hidden";
     document.getElementById('btnAgregar').style.visibility="hidden";
