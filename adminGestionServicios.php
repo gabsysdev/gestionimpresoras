@@ -6,10 +6,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Productos</title>
-    <div id="nav-placeholder"></div>
+    
     <style>
         html,body{
             height:100%;
+            background-color: #f8f9fa;
+        }
+        .contenido{
             background-color: #f8f9fa;
         }
         .menuProductos, .row{
@@ -19,15 +22,17 @@
 
 </head>
 <body>  
+    <div id="nav-placeholder"></div>
     <div class="container-fluid menuProductos">
         <div class="row">
             <div class="col-md-3 bg-secondary text-dark">
                 <div class="list-group mt-3">
                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('alquiler')">Alquileres</a>
                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('Reportes')">Alquileres</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('misDatos')">Mis datos</a>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 contenido">
                 <div id="moduloDerecho">
                     <?php include("abmServicios.php");?>
                 </div>
