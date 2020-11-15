@@ -120,6 +120,7 @@ function mostrarTabla(abm){
         url:"traerABM.php",
         data:data,
         success:function(respuesta){
+            console.log(respuesta);
             let respuesta2=JSON.parse(respuesta);
             let llenarTabla='';
             if (tipoDeConsulta=='abmProductos') {
@@ -205,22 +206,23 @@ function mostrarTabla(abm){
                     document.getElementById('contAlquilados').innerHTML=contAlquilados;
                     document.getElementById('contProxADev').innerHTML=contProxADev;
                     document.getElementById('contSinDevolver').innerHTML=contSinDevolver;
-                llenarTabla+=`
-                <tr>
+                    let esunjson=JSON.stringify(element);
+                llenarTabla+=
+                `<tr>
                     <td>${element.nombre}</td>
                     <td>${element.serial}</td>
                     <td>${element.fec_alquilado}</td>
                     <td>${element.fec_devolucion}</td>
                     <td ${bgEstado}>${estado}</td>
-                    <td><button class="btn btn-secondary" onclick="btnVerInfo('${element.id}, ${element.id_producto}')" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalAgregar">+</button></td>
+                    <td><button class="btn btn-secondary" onclick='btnVerInfo(${esunjson},"${element.nombre}")' class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalModificar">+</button></td>
                 </tr>
                 `;
                 });
 
             }else if(tipoDeConsulta=='abmProveedores'){
                 respuesta2.forEach(element => {
-                llenarTabla+=`
-                <tr>
+                llenarTabla+=
+                `<tr>
                     <td>${element.id}</td>
                     <td>${element.nombre}</td>
                     <td>${element.direccion}</td>
@@ -285,4 +287,91 @@ function tablaAlquileresVisible(){
     document.getElementById('moduloDerecho').style.display="block"; 
     document.getElementById('moduloDatos').style.display="none"; 
     document.getElementById('moduloDatos').style.visibility="hidden"; 
+}
+function btnVerInfo(objAlquilar,nomProducto){
+    let fec_inicio=obtenerFormatoFecha(objAlquilar.fec_alquilado);
+    let fec_fin=obtenerFormatoFecha(objAlquilar.fec_devolucion);
+    console.log(objAlquilar);
+    // pongo el titulo del modal
+    document.getElementById('tituloModificar').innerHTML=nomProducto;
+    
+    // pongo el contenido del modal
+    document.getElementById('bodyModificar').innerHTML=
+    `
+        <div class="row">
+            <div class="col-lg-5">
+                imagen
+            </div>
+            <div class="col-lg-7">
+                <p><strong>Serial: </strong>${objAlquilar.serial}</p>
+                <p><strong>Fecha de alquiler</strong></p>
+                    <label for="inicio">Inicio: </label>
+                    <input type="date" id="inicio" name="inicio" max="${fec_fin}" value="${fec_inicio}">
+                
+                    <label for="fin">Fin: </label>
+                    <input type="date" id="fin" name="fin" min="${fec_inicio}" value="${fec_fin}">
+                <p><strong>Observaciones: </strong></p>
+                <textarea class="form-control" id="observaciones" placeholder="Ingrese alguna observacion"></textarea>
+                <div id="btnGuardarCambios">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card text-center mt-5">
+                  <div class="card-header">
+                    <h4>Historial de Alquiler</h4>
+                  </div>
+                  <div class="card-body text-left" id="historialBody">
+                    
+                  </div>
+                </div>
+            </div>
+        </div>
+    `;
+    cargarHistorial(objAlquilar);
+    
+    //pongo el boton de guardar cambios al modal
+    document.getElementById('btnGuardarCambios').innerHTML=`
+        <button class="btn btn-success mt-3">Guardar cambios</button>
+    `;
+}
+
+function cargarHistorial(objAlquilar){
+    data = {"tipoDeConsulta": "alquilerhistorial","id_producto":objAlquilar.id_producto};
+    $.ajax({
+        type:"POST",
+        dateType:"json",
+        url:"traerABM.php",
+        data:data,
+        success:function(respuesta3){
+            let histDeAlquiler='';
+            let respuesta2=JSON.parse(respuesta3);
+            respuesta2.forEach(element=>{
+                 histDeAlquiler+=`
+                    <div class="col-lg-12 mb-5">
+                        <h5 class="card-title">Detalle</h5>
+                        <p>Cliente: pepito</p>
+                        <p class="card-text">${element.detalle}</p>
+                    </div>
+                `; 
+            });
+            document.getElementById('historialBody').innerHTML=histDeAlquiler;
+        }
+    });
+}
+//formateo la fecha que viene del alquiler
+function obtenerFormatoFecha(fecha) {
+    let anioInicio=Math.trunc(fecha/10000);
+    let mesInicio=Math.trunc(fecha/100)-(anioInicio*100);
+    let diaInicio=fecha-(Math.trunc(fecha/100)*100);
+    if (diaInicio<10) {
+        diaInicio="0"+1;
+        fecFormateada=anioInicio+'-'+mesInicio+'-'+diaInicio
+    }else{
+        fecFormateada=anioInicio+'-'+mesInicio+'-'+diaInicio
+    }
+    return fecFormateada;
 }

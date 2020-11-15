@@ -28,8 +28,7 @@
             <div class="col-md-3 bg-secondary text-dark">
                 <div class="list-group mt-3">
                     <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('alquiler')">Alquileres</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('Reportes')">Alquileres</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('misDatos')">Mis datos</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" onclick="mostrarTabla('Reportes')">Mantenimiento</a>
                 </div>
             </div>
             <div class="col-md-9 contenido">

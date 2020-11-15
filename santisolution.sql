@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2020 a las 05:16:08
+-- Tiempo de generación: 15-11-2020 a las 03:05:21
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -41,8 +41,29 @@ CREATE TABLE `alquiler` (
 --
 
 INSERT INTO `alquiler` (`id_alquiler`, `id_producto`, `fec_alquilado`, `fec_devolucion`, `estado`) VALUES
-(1, 1, 2147483647, 2147483647, 1),
-(2, 1, 2147483647, 2147483647, 1);
+(1, 1, 20201101, 20201121, 1),
+(2, 2, 20201120, 20201130, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alquilerhistorial`
+--
+
+CREATE TABLE `alquilerhistorial` (
+  `id_historial` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `detalle` varchar(255) NOT NULL,
+  `id_cliente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `alquilerhistorial`
+--
+
+INSERT INTO `alquilerhistorial` (`id_historial`, `id_producto`, `detalle`, `id_cliente`) VALUES
+(1, 1, 'Detalle del primer historial cargado :)', 1),
+(2, 1, 'segundo detalle', 2);
 
 -- --------------------------------------------------------
 
@@ -107,7 +128,9 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `serial`, `precio`, `descripcion`, `id_categoria`, `id_proveedor`, `eliminado`) VALUES
-(1, 'Impresora Xerox', '', '8000', 'Cabezal roto', 1, 1, 0);
+(1, 'Impresora Xerox', '', '8000', 'Cabezal roto', 1, 1, 0),
+(2, 'Impresora HP', '', '7000', 'Cabezal roto', 1, 1, 1),
+(3, 'Impresora HP', '', '7000', 'Cabezal roto', 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -179,6 +202,12 @@ ALTER TABLE `alquiler`
   ADD PRIMARY KEY (`id_alquiler`);
 
 --
+-- Indices de la tabla `alquilerhistorial`
+--
+ALTER TABLE `alquilerhistorial`
+  ADD PRIMARY KEY (`id_historial`);
+
+--
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -201,10 +230,16 @@ ALTER TABLE `alquiler`
   MODIFY `id_alquiler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `alquilerhistorial`
+--
+ALTER TABLE `alquilerhistorial`
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

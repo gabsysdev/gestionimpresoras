@@ -28,6 +28,9 @@
             from alquiler a
             left join producto b on b.id_producto=a.id_producto
         ";
+    }else if($tipoDeConsulta=='alquilerhistorial'){
+        $id_producto=$_POST['id_producto'];
+        $query="select * from alquilerhistorial where id_producto='$id_producto'";
     }else{
         // $tipoDeConsulta=misDatos
         $query="select * from misDatos";
@@ -69,6 +72,12 @@
                 "fec_devolucion"=>$reg["fec_devolucion"],
                 "estado"=>$reg["estado"],
                 "id_producto"=>$reg["id_producto"]
+            );
+         }else if($tipoDeConsulta=='alquilerhistorial'){
+            $jsondata[]=array(
+                "id"=>$reg["id_historial"],
+                "detalle"=>$reg["detalle"],
+                "id_cliente"=>$reg["id_cliente"]
             );
          }else{
             $jsondata[]=array(
