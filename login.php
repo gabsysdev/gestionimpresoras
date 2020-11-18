@@ -61,11 +61,6 @@
 		<input type="text" id="user" class="form-control" placeholder="Usuario" required autofocus>
 
 		<input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-		<div class="checkbox mb-3">
-			<label>
-				<input type="checkbox" value="remember-me"> Recordar contraseña
-			</label>
-		</div>
 		<button class="btn-lg btn-primary btn-block" onclick="acceder()">Ingresar</button>
 		<p class="mt-5 mb-3 text-muted">&copy; 2020</p>
 	</div>

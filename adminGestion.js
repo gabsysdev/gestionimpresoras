@@ -1,5 +1,7 @@
 cargarCategoria=[];
 cargarProveedor=[];
+// Lista de productos en estado libre
+productosLibres=[];
 function mostrarTabla(abm){ 
     // carga de array categoria
     dataCategoria={"tipoDeConsulta": "abmCategorías"};
@@ -189,6 +191,10 @@ function mostrarTabla(abm){
                         estado ="Libre";
                         bgEstado='class="bg bg-success text-white text-center"';
                         contLibre += 1;
+
+                        // agrego datos del producto al array productosLibres para luego sugerirlos en el
+                        // Modal "Nuevo alquiler" (en adminGestion_agregar.js)
+                        productosLibres+=JSON.stringify(element);//terminar
                     }else if(element.estado == 2){
                         estado ="Alquilados";
                         bgEstado='class="text-center" style="background-color: rgb(238, 255, 6);"';
