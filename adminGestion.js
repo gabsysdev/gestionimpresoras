@@ -295,9 +295,6 @@ function tablaAlquileresVisible(){
     document.getElementById('moduloDatos').style.visibility="hidden"; 
 }
 function btnVerInfo(objAlquilar,nomProducto){
-    let fec_inicio=obtenerFormatoFecha(objAlquilar.fec_alquilado);
-    let fec_fin=obtenerFormatoFecha(objAlquilar.fec_devolucion);
-    console.log(objAlquilar);
     // pongo el titulo del modal
     document.getElementById('tituloModificar').innerHTML=nomProducto;
     
@@ -312,12 +309,12 @@ function btnVerInfo(objAlquilar,nomProducto){
                 <p><strong>Serial: </strong>${objAlquilar.serial}</p>
                 <p><strong>Fecha de alquiler</strong></p>
                     <label for="inicio">Inicio: </label>
-                    <input type="date" id="inicio" name="inicio" max="${fec_fin}" value="${fec_inicio}">
+                    <input type="date" id="inicio" name="inicio" value="${objAlquilar.fec_alquilado}">
                 
                     <label for="fin">Fin: </label>
-                    <input type="date" id="fin" name="fin" min="${fec_inicio}" value="${fec_fin}">
+                    <input type="date" id="fin" name="fin" value="${objAlquilar.fec_devolucion}">
                 <p><strong>Observaciones: </strong></p>
-                <textarea class="form-control" id="observaciones" placeholder="Ingrese alguna observacion"></textarea>
+                <textarea class="form-control" id="observaciones" placeholder="Ingrese alguna observacion">${objAlquilar.observacion}</textarea>
                 <div id="btnGuardarCambios">
                     
                 </div>
@@ -338,10 +335,10 @@ function btnVerInfo(objAlquilar,nomProducto){
         </div>
     `;
     cargarHistorial(objAlquilar);
-    
+    let esunjson2=JSON.stringify(objAlquilar);
     //pongo el boton de guardar cambios al modal
     document.getElementById('btnGuardarCambios').innerHTML=`
-        <button class="btn btn-success mt-3">Guardar cambios</button>
+        <button class="btn btn-success mt-3" onclick='guardarCambios(${esunjson2})' data-dismiss="modal">Guardar cambios</button>
     `;
 }
 
@@ -368,16 +365,23 @@ function cargarHistorial(objAlquilar){
         }
     });
 }
-//formateo la fecha que viene del alquiler
-function obtenerFormatoFecha(fecha) {
-    let anioInicio=Math.trunc(fecha/10000);
-    let mesInicio=Math.trunc(fecha/100)-(anioInicio*100);
-    let diaInicio=fecha-(Math.trunc(fecha/100)*100);
-    if (diaInicio<10) {
-        diaInicio="0"+1;
-        fecFormateada=anioInicio+'-'+mesInicio+'-'+diaInicio
-    }else{
-        fecFormateada=anioInicio+'-'+mesInicio+'-'+diaInicio
-    }
-    return fecFormateada;
+
+//guarda cambios en ver mas info del alquiler
+function guardarCambios(objAlquilar) {
+    let tipoABM = "alquiler";
+    let fechaInicio = document.getElementById("inicio").value;
+    let fechaFin = document.getElementById("fin").value;
+    let observacion = document.getElementById("observaciones").value;
+    let id_alquiler=objAlquilar.id;
+    
+    data = {"tipoABM": tipoABM,"id":id_alquiler, "fechaInicio": fechaInicio, "fechaFin": fechaFin, "observacion": observacion};
+    $.ajax({
+        type:"POST",
+        url:"adminGestion_editar.php",
+        data: data,
+        success: function(res){
+            mostrarTabla(tipoABM);
+        }
+    })
+
 }

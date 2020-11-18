@@ -33,7 +33,8 @@ CREATE TABLE `alquiler` (
   `id_producto` int(11) NOT NULL,
   `fec_alquilado` int(11) NOT NULL,
   `fec_devolucion` int(11) NOT NULL,
-  `estado` int(11) NOT NULL
+  `estado` int(11) NOT NULL,
+  `observacion` varchar(250) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
