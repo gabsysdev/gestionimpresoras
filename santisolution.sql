@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2020 a las 03:05:21
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.8
+-- Servidor: localhost
+-- Tiempo de generación: 19-11-2020 a las 01:02:50
+-- Versión del servidor: 10.3.16-MariaDB
+-- Versión de PHP: 7.2.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,19 +31,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `alquiler` (
   `id_alquiler` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `fec_alquilado` int(11) NOT NULL,
-  `fec_devolucion` int(11) NOT NULL,
+  `fec_alquilado` date NOT NULL,
+  `fec_devolucion` date NOT NULL,
   `estado` int(11) NOT NULL,
-  `observacion` varchar(250) NULL
+  `observacion` varchar(250) DEFAULT NULL,
+  `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `alquiler`
 --
 
-INSERT INTO `alquiler` (`id_alquiler`, `id_producto`, `fec_alquilado`, `fec_devolucion`, `estado`) VALUES
-(1, 1, 20201101, 20201121, 1),
-(2, 2, 20201120, 20201130, 3);
+INSERT INTO `alquiler` (`id_alquiler`, `id_producto`, `fec_alquilado`, `fec_devolucion`, `estado`, `observacion`, `id_cliente`) VALUES
+(1, 1, '2020-11-03', '2020-11-24', 1, 'esta impresora no funca', 1),
+(2, 2, '2020-11-20', '2020-11-30', 3, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -85,6 +86,26 @@ CREATE TABLE `categoria` (
 INSERT INTO `categoria` (`id_categoria`, `nombre`, `eliminado`) VALUES
 (1, 'Impresoras', 0),
 (3, 'Toners', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `id_cliente` int(11) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `apellido` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id_cliente`, `nombre`, `apellido`, `email`) VALUES
+(1, 'santi', 'santi', 'santi@gagsag');
 
 -- --------------------------------------------------------
 
@@ -209,6 +230,12 @@ ALTER TABLE `alquilerhistorial`
   ADD PRIMARY KEY (`id_historial`);
 
 --
+-- Indices de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id_cliente`);
+
+--
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
@@ -235,6 +262,12 @@ ALTER TABLE `alquiler`
 --
 ALTER TABLE `alquilerhistorial`
   MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
