@@ -1,7 +1,7 @@
 cargarCategoria=[];
 cargarProveedor=[];
 // Lista de productos en estado libre
-productosLibres=[];
+productosLibres='[{"id":"0","nombre":"(Seleccionar Producto)","serial":"","fec_alquilado":"20201101","fec_devolucion":"20201121","estado":"1","id_producto":"1"}';
 function mostrarTabla(abm){ 
     // carga de array categoria
     dataCategoria={"tipoDeConsulta": "abmCategorías"};
@@ -122,7 +122,6 @@ function mostrarTabla(abm){
         url:"traerABM.php",
         data:data,
         success:function(respuesta){
-            console.log(respuesta);
             let respuesta2=JSON.parse(respuesta);
             let llenarTabla='';
             if (tipoDeConsulta=='abmProductos') {
@@ -194,7 +193,9 @@ function mostrarTabla(abm){
 
                         // agrego datos del producto al array productosLibres para luego sugerirlos en el
                         // Modal "Nuevo alquiler" (en adminGestion_agregar.js)
-                        productosLibres+=JSON.stringify(element);//terminar
+                        console.log(element)
+                        productosLibres+=","+JSON.stringify(element);//terminar
+                        
                     }else if(element.estado == 2){
                         estado ="Alquilados";
                         bgEstado='class="text-center" style="background-color: rgb(238, 255, 6);"';
@@ -224,7 +225,8 @@ function mostrarTabla(abm){
                 </tr>
                 `;
                 });
-
+                productosLibres+=']';
+                console.log(productosLibres)
             }else if(tipoDeConsulta=='abmProveedores'){
                 respuesta2.forEach(element => {
                 llenarTabla+=

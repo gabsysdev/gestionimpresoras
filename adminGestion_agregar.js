@@ -13,10 +13,19 @@ function onclick_btnAgregar(tipoABM){
                 <option value="${element.id}" >${element.nombre}</option>
         `;
     });
+
+    productosLibres=JSON.parse(productosLibres);
+    console.log(productosLibres,cargarProveedor);
     productosLibres.forEach(element => {//terminar
-        prodLibre+= `
-                <option value="${element.id}" >Nombre: ${element.nombre} - Serial: ${element.serial}</option>
-        `;
+        if (element.id==0) {
+            prodLibre+= `
+                <option value="${element.id}" >${element.nombre}</option>
+            `;
+        }else{
+            prodLibre+= `
+                    <option value="${element.id}" >Nombre: ${element.nombre} - Serial: ${element.serial}</option>
+            `;
+        }
     });
     document.getElementById('tituloAgregar').innerHTML="Agregar " +tipoABM;
     if (tipoABM=="producto") {
