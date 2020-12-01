@@ -9,6 +9,10 @@
         echo "entre a producto";
         $queryEliminarProd="update $tipoDeABM set eliminado=1 where id_producto=$id";
         $ejecutarEliminarProd=mysqli_query($conexion,$queryEliminarProd);
+    }else if($tipoDeABM=="cliente"){
+        echo "entre a cliente";
+        $queryEliminarCliente="update $tipoDeABM set eliminado=1 where id_cliente=$id";
+        $ejecutarEliminarCliente=mysqli_query($conexion,$queryEliminarCliente);
     }else{
         $idRelacion="id_".$tipoDeABM;
 

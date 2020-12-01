@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 19-11-2020 a las 01:02:50
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.2.20
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 01-12-2020 a las 03:47:30
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,7 @@ CREATE TABLE `alquiler` (
 --
 
 INSERT INTO `alquiler` (`id_alquiler`, `id_producto`, `fec_alquilado`, `fec_devolucion`, `estado`, `observacion`, `id_cliente`) VALUES
-(1, 1, '2020-11-03', '2020-11-24', 1, 'esta impresora no funca', 1),
+(1, 1, '2020-11-03', '2020-11-25', 1, 'esta impresora si funca', 1),
 (2, 2, '2020-11-20', '2020-11-30', 3, NULL, 1);
 
 -- --------------------------------------------------------
@@ -97,15 +97,17 @@ CREATE TABLE `cliente` (
   `id_cliente` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(30) NOT NULL,
-  `email` varchar(30) NOT NULL
+  `email` varchar(30) NOT NULL,
+  `eliminado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nombre`, `apellido`, `email`) VALUES
-(1, 'santi', 'santi', 'santi@gagsag');
+INSERT INTO `cliente` (`id_cliente`, `nombre`, `apellido`, `email`, `eliminado`) VALUES
+(1, 'santi', 'santi', 'santi@gagsag', 0),
+(2, 'lkasjdflaksjdf', 'alksjdflaksdj', 'laksjdflkajsd', 1);
 
 -- --------------------------------------------------------
 
@@ -267,7 +269,7 @@ ALTER TABLE `alquilerhistorial`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`

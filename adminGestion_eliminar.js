@@ -22,6 +22,9 @@ function onclick_btnConfirmarEliminar(tipoABM,id){
             }else if(tipoABM=="proveedor"){
                 mostrarTabla("abmProveedores");
                 console.log(respuesta); 
+            }else if(tipoABM=="cliente"){
+                mostrarTabla("abmCliente");
+                console.log(respuesta); 
             }
         }
     })

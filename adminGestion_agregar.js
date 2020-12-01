@@ -13,7 +13,8 @@ function onclick_btnAgregar(tipoABM){
                 <option value="${element.id}" >${element.nombre}</option>
         `;
     });
-
+    productosLibres+=']';
+    console.log(productosLibres);
     productosLibres=JSON.parse(productosLibres);
     console.log(productosLibres,cargarProveedor);
     productosLibres.forEach(element => {//terminar
@@ -150,6 +151,39 @@ function onclick_btnAgregar(tipoABM){
                 </div>
             </div>
         `;
+    }else if (tipoABM=='cliente'){
+        document.getElementById('btnAgregarCancelar').innerHTML=`
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button onclick="agregarRegistro('${tipoABM}')" type="button" class="btn btn-primary" data-dismiss="modal">Agregar</button>
+        `;
+        document.getElementById('bodyAgregarCliente').innerHTML=` 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+                            </div>
+                            <input id="agregarNombreCliente"   type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
+                            </div>
+                            <input id="agregarApellidoCliente"   type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                            </div>
+                            <input id="agregarEmailCliente"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        `;
     }else if (tipoABM=="alquiler") {
         console.log("Activamos boton Nuevo Alquiler");
 
@@ -221,6 +255,11 @@ function agregarRegistro(tipoABM){
         let cuitProveedor=document.getElementById('agregarCuit').value;
         data = {"tipoABM": tipoABM, "nombre":nombreProveedor,"direccion":direccionProveedor,"cuit":cuitProveedor};
         
+    }else if (tipoABM=="cliente") {
+        let nombreCliente=document.getElementById('agregarNombreCliente').value;
+        let apellidoCliente=document.getElementById('agregarApellidoCliente').value;
+        let emailCliente=document.getElementById('agregarEmailCliente').value;
+        data = {"tipoABM": tipoABM, "nombre":nombreCliente,"apellido":apellidoCliente,"email":emailCliente};
     }
     console.log(data,tipoABM);
     $.ajax({
@@ -237,6 +276,9 @@ function agregarRegistro(tipoABM){
             }else if(tipoABM=="proveedor"){
                 mostrarTabla("abmProveedores");
                 console.log(respuesta); 
+            }else if(tipoABM=="cliente"){
+                mostrarTabla("abmCliente");
+                console.log(respuesta);
             }
         }
     })  

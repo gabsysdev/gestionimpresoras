@@ -1,4 +1,5 @@
-function onclick_btnEditar(tipoABM, id, nombre, precio, descripcion, direccion, cuit, idCategoria, idProveedor) {
+function onclick_btnEditar(tipoABM, id, nombre, precio, descripcion, direccion, cuit, idCategoria, idProveedor,email,apellido) {
+    console.log(tipoABM, id, nombre, precio, descripcion, direccion, cuit, idCategoria, idProveedor,email,apellido);
     let categorias='';
     let proveedores='';
     cargarCategoria.forEach(element => {
@@ -113,7 +114,7 @@ function onclick_btnEditar(tipoABM, id, nombre, precio, descripcion, direccion, 
                 </div>
             </div>
         `;
-    } else if (tipoABM == "Proveedor") {
+    } else if (tipoABM == "cliente") {
         document.getElementById('btnEditarCancelar').innerHTML =`
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" onclick="editarCambios('${tipoABM}')" data-dismiss="modal">Guardar Cambios</button>
@@ -127,20 +128,20 @@ function onclick_btnEditar(tipoABM, id, nombre, precio, descripcion, direccion, 
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
                             </div>
-                            <input id="editarNombreProveedor" value="${nombre}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                            <input id="idProveedor" value="${id}" type="hidden">
+                            <input id="editarNombreCliente" value="${nombre}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            <input id="idCliente" value="${id}" type="hidden">
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Dirección</span>
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
                             </div>
-                            <input id="editarDireccion" value="${direccion}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            <input id="editarApellido" value="${apellido}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Cuit</span>
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
                             </div>
-                            <input id="editarCuit" value="${cuit}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            <input id="editarEmail" value="${email}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
                     </div>
                     <div class="col-2"></div>

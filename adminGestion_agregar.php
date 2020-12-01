@@ -13,6 +13,10 @@
         $query="insert into $tipoDeABM (id_producto, nombre, precio, descripcion, id_categoria, id_proveedor, eliminado) 
         values (null, '$nombre', '$precio', '$descripcion', '$idCategoria', '$idProveedor', 0)";
         echo $query;
+    }else if ($tipoDeABM=="cliente"){
+        $email=$_POST['email'];
+        $apellido=$_POST['apellido'];
+        $query="insert into $tipoDeABM (id_cliente,nombre,apellido,email,eliminado) values (null,'$nombre','$apellido','$email',0)";
     }else if ($tipoDeABM=="categoria") {
         $query= "insert into $tipoDeABM (id_categoria, nombre, eliminado) 
         values (null, '$nombre', 0)";

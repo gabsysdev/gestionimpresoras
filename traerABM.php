@@ -2,6 +2,7 @@
     include("conexion.php");
 
     $tipoDeConsulta=$_POST['tipoDeConsulta'];
+    
     if ($tipoDeConsulta=='abmProductos') {
        $query="select id_producto,
                         a.nombre,
@@ -20,6 +21,8 @@
         $query="select * from categoria where eliminado=0";
     }elseif ($tipoDeConsulta=='abmProveedores') {
         $query="select * from proveedor where eliminado=0";
+    }elseif ($tipoDeConsulta=='abmCliente') {
+        $query="select * from cliente where eliminado=0";
     }elseif ($tipoDeConsulta=='Reportes') {
         //$query="";
     }elseif ($tipoDeConsulta=='alquiler'){
@@ -36,6 +39,7 @@
         // $tipoDeConsulta=misDatos
         $query="select * from misDatos";
     }
+
     $ejecutar=mysqli_query($conexion,$query);
 
     $jsondata=array();
@@ -62,6 +66,13 @@
                 "nombre"=>$reg["nombre"],
                 "direccion"=>$reg["direccion"],
                 "cuit"=>$reg["cuit"]
+            );
+         }elseif($tipoDeConsulta=='abmCliente'){
+            $jsondata[]=array(
+                "id"=>$reg["id_cliente"],
+                "nombre"=>$reg["nombre"],
+                "apellido"=>$reg["apellido"],
+                "email"=>$reg["email"]
             );
          }elseif ($tipoDeConsulta=='Reportes') {
          }elseif($tipoDeConsulta=='alquiler'){
